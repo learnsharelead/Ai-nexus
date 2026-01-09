@@ -1,0 +1,37 @@
+# AI Nexus - Phase 1 Requirements
+# Core Framework
+streamlit>=1.31.0
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Visualization
+plotly>=5.18.0
+altair>=5.2.0
+
+# UI Components
+streamlit-option-menu>=0.3.6
+streamlit-extras>=0.3.6
+streamlit-lottie>=0.0.5
+streamlit-card>=1.0.0
+streamlit-tags>=1.2.8
+
+# Authentication (for future)
+streamlit-authenticator>=0.3.1
+
+# Utilities
+Pillow>=10.0.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# AI Integration (for future phases)
+openai>=1.10.0
+anthropic>=0.18.0
+
+# Database (for future phases)
+sqlalchemy>=2.0.0
+
+# Search & Analytics
+fuzzywuzzy>=0.18.0
+python-Levenshtein>=0.23.0

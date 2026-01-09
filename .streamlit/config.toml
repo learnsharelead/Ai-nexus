@@ -1,0 +1,28 @@
+[server]
+maxUploadSize = 50
+maxMessageSize = 50
+enableXsrfProtection = true
+runOnSave = true
+
+[browser]
+gatherUsageStats = false
+
+[runner]
+magicEnabled = false
+fastReruns = true
+enforceSerializableSessionState = false
+
+[client]
+showErrorDetails = false
+toolbarMode = "minimal"
+
+[logger]
+level = "warning"
+messageFormat = "%(asctime)s %(message)s"
+
+[theme]
+primaryColor = "#A78BFA"
+backgroundColor = "#09090B"
+secondaryBackgroundColor = "#18181B"
+textColor = "#FAFAFA"
+font = "sans serif"
