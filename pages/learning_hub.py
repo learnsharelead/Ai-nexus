@@ -222,6 +222,7 @@ def render_tutorial_grid(tutorials: list, context: str = "default"):
 def render_tutorial_card(tutorial: dict, context: str = "default"):
     """Render a single tutorial card with completion status"""
     from utils.helpers import is_tutorial_complete
+    import html
     
     difficulty_colors = {
         "Beginner": "#10B981",
@@ -233,24 +234,38 @@ def render_tutorial_card(tutorial: dict, context: str = "default"):
     
     # Check completion status
     is_complete = is_tutorial_complete(tutorial['id'])
+    
+    # Pre-calculate styles
+    border_left = "border-left: 3px solid #10B981 !important;" if is_complete else ""
     completion_badge = '<span style="background: #10B981; color: white; padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.65rem; font-weight: 700; margin-left: 8px;">✓ DONE</span>' if is_complete else ''
     
-    st.markdown(f"""
-        <div class="tool-card" style="border-top: 4px solid {diff_color} !important; background: rgba(255, 255, 255, 0.6) !important; min-height: 160px; display: flex; flex-direction: column; {'border-left: 3px solid #10B981 !important;' if is_complete else ''}">
+    # Get clean description and escape HTML entities
+    description = html.escape(tutorial.get('description', '')[:95])
+    icon = tutorial.get('icon', '📚')
+    title = html.escape(tutorial['title'])
+    difficulty = tutorial.get('difficulty', 'Beginner')
+    duration = tutorial['duration']
+    
+    # Build card HTML safely
+    card_html = f'''
+        <div class="tool-card" style="border-top: 4px solid {diff_color} !important; background: rgba(255, 255, 255, 0.6) !important; min-height: 160px; display: flex; flex-direction: column; {border_left}">
             <div style="font-family: Outfit; font-weight: 800; font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: flex-start;">
-                <span style="margin-right: 10px; font-size: 1.3rem;">{tutorial.get('icon', '📚')}</span>
-                <span style="background: var(--prism-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{tutorial['title']}</span>
+                <span style="margin-right: 10px; font-size: 1.3rem;">{icon}</span>
+                <span style="background: var(--prism-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{title}</span>
                 {completion_badge}
             </div>
             <div style="font-size: 0.9rem; color: #475569; margin-bottom: 12px; flex-grow: 1; overflow: hidden; line-height: 1.5;">
-                {tutorial.get('description', '')[:95]}...
+                {description}...
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 10px;">
-                <span style="background: {diff_color}; color: white; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700;">{tutorial.get('difficulty', 'Beginner')}</span>
-                <span style="color: #64748B; font-size: 0.85rem; font-weight: 700;">⏱️ {tutorial['duration']}</span>
+                <span style="background: {diff_color}; color: white; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700;">{difficulty}</span>
+                <span style="color: #64748B; font-size: 0.85rem; font-weight: 700;">⏱️ {duration}</span>
             </div>
         </div>
-    """, unsafe_allow_html=True)
+    '''
+    
+    # Use st.html instead of st.markdown for better HTML rendering
+    st.html(card_html)
     
     button_text = "📖 Review" if is_complete else "🚀 Start Learning"
     if st.button(button_text, key=f"btn_lh_{context}_{tutorial['id']}", use_container_width=True):

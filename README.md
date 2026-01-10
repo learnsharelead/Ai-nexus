@@ -1,4 +1,4 @@
-# 🚀 AI Nexus v2.5.0
+# 🚀 AI Nexus v2.6.0
 
 > **Enterprise Cognitive Architecture & Engineering System**
 
@@ -32,6 +32,8 @@ AI Nexus is a comprehensive Streamlit-based platform for AI professionals to lea
 - **AI Score Tracking** based on assessments
 - **Weekly Activity Chart** with real engagement data
 - **Learning Progress Visualization**
+- **Skill Distribution** radar chart
+- **Achievements & Badges**
 - **Data Export/Import** for workspace portability
 
 ### ⚡ Skills Assessment
@@ -45,9 +47,10 @@ AI Nexus is a comprehensive Streamlit-based platform for AI professionals to lea
 ## 🛠️ Tech Stack
 
 - **Frontend**: Streamlit
-- **Database**: SQLite with SQLAlchemy
+- **Database**: SQLite with SQLAlchemy (with Foreign Keys & Relationships)
 - **Styling**: Custom CSS with Prism Vibrant Theme
 - **Python**: 3.11+
+- **Testing**: pytest
 
 ---
 
@@ -70,6 +73,11 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
+Or use the batch file on Windows:
+```bash
+run.bat
+```
+
 ---
 
 ## 📁 Project Structure
@@ -78,13 +86,15 @@ streamlit run app.py
 AI Nexus/
 ├── app.py                 # Main application entry
 ├── config/
-│   └── settings.py        # Configuration & constants
+│   ├── settings.py        # Configuration & constants
+│   └── enums.py           # Centralized enums (NEW)
 ├── data/
 │   ├── final_assets.py    # AI tools database
 │   ├── final_prompts.py   # Prompt library
 │   └── final_tutorials.py # Tutorial content
 ├── database/
-│   ├── models.py          # SQLAlchemy models
+│   ├── db.py              # Database connection & context manager
+│   ├── models.py          # SQLAlchemy models with ForeignKeys
 │   └── operations.py      # CRUD operations
 ├── pages/
 │   ├── ai_tools_final.py  # Tools directory
@@ -96,12 +106,35 @@ AI Nexus/
 │   ├── tutorial_viewer.py # Tutorial reader
 │   └── user_profile.py    # Profile management
 ├── styles/
-│   └── custom_css.py      # Theme & styling
+│   └── custom_css.py      # Theme & styling (with accessibility)
 ├── utils/
 │   └── helpers.py         # Utility functions
+├── tests/                 # Test suite (NEW)
+│   ├── conftest.py        # Pytest fixtures
+│   ├── test_tutorials.py  # Tutorial tests
+│   ├── test_prompts.py    # Prompt tests
+│   └── test_helpers.py    # Helper tests
 ├── docs/
 │   └── archive/           # Legacy documentation
-└── requirements.txt
+├── requirements.txt       # Full dependencies
+└── requirements-minimal.txt # Minimal dependencies
+```
+
+---
+
+## 🧪 Testing
+
+Run the test suite:
+
+```bash
+# Run all tests
+pytest
+
+# Run with coverage
+pytest --cov=. --cov-report=html
+
+# Run specific test file
+pytest tests/test_tutorials.py -v
 ```
 
 ---
@@ -112,12 +145,24 @@ AI Nexus/
 - **High Contrast** text for accessibility
 - **Glassmorphism** cards with subtle shadows
 - **Smooth Animations** on card load
+- **Accessibility**: Reduced motion support, high contrast mode
 
 ---
 
 ## 📝 Version History
 
-### v2.5.0 (Current)
+### v2.6.0 (Current)
+- ✅ Fixed critical dashboard rendering bug
+- ✅ Added ForeignKey constraints to database models
+- ✅ Timezone-aware datetime handling
+- ✅ Context manager for database sessions
+- ✅ Removed cache-clearing anti-pattern
+- ✅ Added accessibility CSS improvements
+- ✅ Created centralized enums module
+- ✅ Added comprehensive test suite
+- ✅ Enhanced run.bat with error handling
+
+### v2.5.0
 - ✅ Global Search across all content
 - ✅ Assessment Engine (10 questions)
 - ✅ Data Import/Export
@@ -132,13 +177,35 @@ AI Nexus/
 
 ---
 
+## 🔧 Development
+
+### Code Quality
+```bash
+# Format code (if using black)
+black .
+
+# Type checking (if using mypy)
+mypy .
+
+# Lint (if using ruff)
+ruff check .
+```
+
+### Database Reset
+```bash
+python -c "from database.db import reset_db; reset_db()"
+```
+
+---
+
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Run tests (`pytest`)
+4. Commit your changes (`git commit -m 'Add amazing feature'`)
+5. Push to the branch (`git push origin feature/amazing-feature`)
+6. Open a Pull Request
 
 ---
 

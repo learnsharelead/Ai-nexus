@@ -4,7 +4,7 @@ AI Nexus - Configuration Settings
 
 # Application Settings
 APP_NAME = "AI Nexus"
-APP_VERSION = "2.5.0"
+APP_VERSION = "2.6.0"
 APP_TAGLINE = "Enterprise Cognitive Architecture & Engineering System"
 
 # Theme Colors

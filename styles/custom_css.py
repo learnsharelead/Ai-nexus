@@ -247,5 +247,53 @@ button:focus, input:focus, select:focus {
     outline-offset: 2px;
 }
 
+/* Enhanced focus visibility for keyboard navigation */
+button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible {
+    outline: 3px solid #F59E0B !important;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.2);
+}
+
+/* Reduced motion preference - respect user accessibility settings */
+@media (prefers-reduced-motion: reduce) {
+    .glass-card, .metric-card, .tool-card {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .glass-card, .metric-card, .tool-card {
+        border: 2px solid #000 !important;
+    }
+    
+    .metric-value, h1 {
+        -webkit-text-fill-color: #000 !important;
+        color: #000 !important;
+    }
+}
+
+/* Skip to content link (screen reader friendly) */
+.skip-to-content {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 999;
+    padding: 1rem;
+    background: #6366F1;
+    color: white;
+}
+
+.skip-to-content:focus {
+    left: 0;
+}
+
 </style>
 """

@@ -5,8 +5,8 @@ Test all database operations
 import sys
 from pathlib import Path
 
-# Add root to path
-ROOT_DIR = Path(__file__).parent.parent
+# Add root to path (project root is the same directory as this test file)
+ROOT_DIR = Path(__file__).parent
 sys.path.insert(0, str(ROOT_DIR))
 
 from database.db import init_db, get_db_info, check_db_exists

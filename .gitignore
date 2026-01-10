@@ -37,3 +37,34 @@ build/
 # Cache
 .cache/
 *.pyc
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+data/*.db
+
+# Secrets
+secrets.toml
+.secrets/
+*.key
+*.pem
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+
+# IDE specific additions
+*.code-workspace
+.history/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Temporary files
+*.tmp
+*.temp
+~$*

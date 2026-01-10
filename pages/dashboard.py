@@ -206,6 +206,13 @@ def render():
                     st.info("No activities yet. Start learning to see your progress here!")
             except Exception as e:
                 st.error(f"❌ Error loading activities: {str(e)}")
+    
+    # Render right column
+    with col2:
+        render_right_column()
+    
+    # Render quick actions section (below the two-column layout)
+    render_quick_actions(profile, ai_score, completed_count, saved_prompts_count)
 
 
 def get_time_ago(timestamp):
@@ -227,72 +234,77 @@ def get_time_ago(timestamp):
         return f"{days} day ago" if days == 1 else f"{days} days ago"
     else:
         return timestamp.strftime("%b %d")
+
+
+def render_right_column():
+    """Render the right column content - Skill Distribution, Achievements, Recommendations"""
+    # Skill Radar
+    st.markdown("### 🎯 Skill Distribution")
     
-    with col2:
-        # Skill Radar
-        st.markdown("### 🎯 Skill Distribution")
-        
-        skills = [
-            {"name": "Code Generation", "level": 75},
-            {"name": "Debugging", "level": 60},
-            {"name": "Testing", "level": 45},
-            {"name": "Documentation", "level": 80},
-            {"name": "Prompt Engineering", "level": 65},
-        ]
-        
-        for skill in skills:
-            color = "#10B981" if skill['level'] >= 70 else "#F59E0B" if skill['level'] >= 50 else "#EF4444"
-            st.markdown(f"""
-                <div style="margin-bottom: 8px;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
-                        <span style="font-size: 9px; font-weight: 600; color: #1E293B !important;">{skill['name']}</span>
-                        <span style="color: {color} !important; font-size: 9px; font-weight: 800;">{skill['level']}%</span>
-                    </div>
-                    <div style="background: #F1F5F9; border-radius: 2px; height: 3px; overflow: hidden;">
-                        <div style="background: {color}; height: 100%; width: {skill['level']}%;"></div>
-                    </div>
+    skills = [
+        {"name": "Code Generation", "level": 75},
+        {"name": "Debugging", "level": 60},
+        {"name": "Testing", "level": 45},
+        {"name": "Documentation", "level": 80},
+        {"name": "Prompt Engineering", "level": 65},
+    ]
+    
+    for skill in skills:
+        color = "#10B981" if skill['level'] >= 70 else "#F59E0B" if skill['level'] >= 50 else "#EF4444"
+        st.markdown(f"""
+            <div style="margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
+                    <span style="font-size: 9px; font-weight: 600; color: #1E293B !important;">{skill['name']}</span>
+                    <span style="color: {color} !important; font-size: 9px; font-weight: 800;">{skill['level']}%</span>
                 </div>
-            """, unsafe_allow_html=True)
-        
-        st.markdown("<br>", unsafe_allow_html=True)
-        
-        # Achievements
-        st.markdown("### 🏆 Achievements")
-        
-        achievements = [
-            {"icon": "🚀", "name": "Getting Started", "desc": "Completed profile"},
-            {"icon": "📚", "name": "Quick Learner", "desc": "5 tutorials done"},
-            {"icon": "💡", "name": "Prompt Pro", "desc": "10 prompts saved"},
-            {"icon": "🔧", "name": "Tool Explorer", "desc": "Viewed 20 tools"},
-        ]
-        
-        for achievement in achievements:
-            st.markdown(f"""
-                <div class="tool-card" style="padding: 0.75rem; margin-bottom: 0.5rem; display: flex; align-items: center;">
-                    <span style="font-size: 1.5rem; margin-right: 0.75rem;">{achievement['icon']}</span>
-                    <div>
-                        <div style="font-weight: 600; font-size: 0.85rem;">{achievement['name']}</div>
-                        <div style="color: #A1A1AA; font-size: 0.75rem;">{achievement['desc']}</div>
-                    </div>
+                <div style="background: #F1F5F9; border-radius: 2px; height: 3px; overflow: hidden;">
+                    <div style="background: {color}; height: 100%; width: {skill['level']}%;"></div>
                 </div>
-            """, unsafe_allow_html=True)
-        
-        st.markdown("<br>", unsafe_allow_html=True)
-        
-        # Recommendations
-        st.markdown("### ✨ AI Recommendations")
-        
-        st.markdown("""
-            <div class="glass-card" style="padding: 1rem;">
-                <p style="color: #A1A1AA; font-size: 0.85rem; margin-bottom: 1rem;">Based on your progress:</p>
-                <ul style="font-size: 0.85rem; padding-left: 1.25rem;">
-                    <li style="margin-bottom: 0.5rem;">Try <span style="color: #A78BFA;">Cursor IDE</span> for faster coding</li>
-                    <li style="margin-bottom: 0.5rem;">Complete <span style="color: #A78BFA;">Testing Deep Dive</span></li>
-                    <li>Explore <span style="color: #A78BFA;">Chain of Thought prompts</span></li>
-                </ul>
             </div>
         """, unsafe_allow_html=True)
     
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    # Achievements
+    st.markdown("### 🏆 Achievements")
+    
+    achievements = [
+        {"icon": "🚀", "name": "Getting Started", "desc": "Completed profile"},
+        {"icon": "📚", "name": "Quick Learner", "desc": "5 tutorials done"},
+        {"icon": "💡", "name": "Prompt Pro", "desc": "10 prompts saved"},
+        {"icon": "🔧", "name": "Tool Explorer", "desc": "Viewed 20 tools"},
+    ]
+    
+    for achievement in achievements:
+        st.markdown(f"""
+            <div class="tool-card" style="padding: 0.75rem; margin-bottom: 0.5rem; display: flex; align-items: center;">
+                <span style="font-size: 1.5rem; margin-right: 0.75rem;">{achievement['icon']}</span>
+                <div>
+                    <div style="font-weight: 600; font-size: 0.85rem;">{achievement['name']}</div>
+                    <div style="color: #A1A1AA; font-size: 0.75rem;">{achievement['desc']}</div>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    # Recommendations
+    st.markdown("### ✨ AI Recommendations")
+    
+    st.markdown("""
+        <div class="glass-card" style="padding: 1rem;">
+            <p style="color: #A1A1AA; font-size: 0.85rem; margin-bottom: 1rem;">Based on your progress:</p>
+            <ul style="font-size: 0.85rem; padding-left: 1.25rem;">
+                <li style="margin-bottom: 0.5rem;">Try <span style="color: #A78BFA;">Cursor IDE</span> for faster coding</li>
+                <li style="margin-bottom: 0.5rem;">Complete <span style="color: #A78BFA;">Testing Deep Dive</span></li>
+                <li>Explore <span style="color: #A78BFA;">Chain of Thought prompts</span></li>
+            </ul>
+        </div>
+    """, unsafe_allow_html=True)
+
+
+def render_quick_actions(profile, ai_score, completed_count, saved_prompts_count):
+    """Render Quick Actions section"""
     st.markdown("<br>", unsafe_allow_html=True)
     
     # Quick Actions

@@ -59,12 +59,8 @@ st.set_page_config(
     }
 )
 
-# FORCE CLEAR CACHE on every load to eliminate ghost data
-try:
-    st.cache_data.clear()
-    st.cache_resource.clear()
-except Exception:
-    pass
+# Note: Cache clearing removed - use proper cache invalidation via TTL or keys instead
+# If data issues persist, implement versioned caching in individual functions
 
 # Inject custom CSS
 st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
@@ -354,24 +350,16 @@ def main():
             from pages import ai_tools_final as ai_tools
             ai_tools.render()
     elif st.session_state.current_page == "prompts":
-        import importlib
         from pages import prompt_library
-        importlib.reload(prompt_library)
         prompt_library.render()
     elif st.session_state.current_page == "profile":
-        import importlib
         from pages import user_profile
-        importlib.reload(user_profile)
         user_profile.render()
     elif st.session_state.current_page == "dashboard":
-        import importlib
         from pages import dashboard
-        importlib.reload(dashboard)
         dashboard.render()
     elif st.session_state.current_page == "assessment":
-        import importlib
         from pages import assessment
-        importlib.reload(assessment)
         assessment.render()
     elif st.session_state.current_page == "tutorial_viewer":
         from pages import tutorial_viewer
