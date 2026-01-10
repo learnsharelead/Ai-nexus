@@ -98,35 +98,12 @@ def get_or_create_default_user():
 if 'user_id' not in st.session_state:
     st.session_state.user_id = get_or_create_default_user()
 
-# What's New Modal (show once per version)
-def show_whats_new():
-    """Show What's New modal for version updates"""
-    current_version = APP_VERSION
-    seen_version = st.session_state.get('seen_version', '')
-    
-    if seen_version != current_version and not st.session_state.get('dismissed_whats_new', False):
-        st.markdown(f"""
-            <div style="background: linear-gradient(135deg, #6366F1, #EC4899); padding: 1.5rem; border-radius: 16px; margin-bottom: 1.5rem; color: white;">
-                <h3 style="margin:0; color: white;">🎉 What's New in v{current_version}</h3>
-                <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                    <li><strong>Global Search</strong> - Search across all content from the nav bar</li>
-                    <li><strong>Assessment Engine</strong> - 10 AI Engineering questions</li>
-                    <li><strong>Achievement Badges</strong> - Earn badges for your progress</li>
-                    <li><strong>Tip of the Day</strong> - Daily AI best practices</li>
-                    <li><strong>35 AI Tools</strong> - Including Gemini, Groq, Modal</li>
-                    <li><strong>Data Import/Export</strong> - Full workspace portability</li>
-                </ul>
-            </div>
-        """, unsafe_allow_html=True)
-        
-        if st.button("✓ Got it!", type="primary", key="dismiss_whats_new"):
-            st.session_state.seen_version = current_version
-            st.session_state.dismissed_whats_new = True
-            st.rerun()
+
+# What's New Modal removed for compact UI
 
 def render_top_nav():
     """Render horizontal top navigation with global search"""
-    cols = st.columns([1.5, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 1.5])
+    cols = st.columns([1.2, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 1.2])
     
     with cols[0]:
         st.markdown("<h3 style='margin:0; padding:0; background: linear-gradient(90deg, #6366F1, #EC4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: Outfit; font-weight:800;'>AI Nexus</h3>", unsafe_allow_html=True)
@@ -136,6 +113,8 @@ def render_top_nav():
         ("Learn", "learning", "📚"),
         ("Tools", "tools", "🔧"),
         ("Prompts", "prompts", "💡"),
+        ("Hacks", "hacks", "🔥"),
+        ("News", "news", "📰"),
         ("Profile", "profile", "👤"),
         ("Dash", "dashboard", "📊")
     ]
@@ -148,7 +127,7 @@ def render_top_nav():
                 st.rerun()
     
     # Global Search in last column
-    with cols[7]:
+    with cols[9]:
         search_query = st.text_input("🔍", placeholder="Search...", key="global_search", label_visibility="collapsed")
         if search_query:
             st.session_state.global_search_query = search_query
@@ -197,39 +176,19 @@ def render_home():
     prompt_count = len(get_all_prompts())
     tutorial_count = len(get_all_tutorials())
 
-    # Stats row
-    col1, col2, col3, col4 = st.columns(4)
-    
-    stats = [
-        {"icon": "🎓", "value": f"{tutorial_count}", "label": "Verified Tutorials", "color": "#6366F1"},
-        {"icon": "⚡", "value": f"{tool_count}", "label": "Curated Tools", "color": "#EC4899"},
-        {"icon": "💎", "value": f"{prompt_count}", "label": "Engineering Prompts", "color": "#F59E0B"},
-        {"icon": "🔥", "value": "BETA", "label": "System Status", "color": "#10B981"},
-    ]
-    
-    for i, (col, stat) in enumerate(zip([col1, col2, col3, col4], stats)):
-        with col:
-            st.markdown(f"""
-                <div class="metric-card" style="border-bottom: 4px solid {stat['color']} !important;">
-                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">{stat['icon']}</div>
-                    <div class="metric-value">{stat['value']}</div>
-                    <div class="metric-label">{stat['label']}</div>
-                </div>
-            """, unsafe_allow_html=True)
-    
-    st.markdown("<br>", unsafe_allow_html=True)
+    # Removed stats banner for compact layout
     st.markdown("## 🎯 Strategic Modules")
     
-    # Feature cards
+    # Feature cards - First row
     cols = st.columns(3)
     
-    features = [
+    features_row1 = [
         ("Learning Hub", "learning", "🎓", "Personalized courses designed to help you master professional AI tools.", "linear-gradient(135deg, #6366F1 0%, #818CF8 100%)"),
         ("AI Tool Universe", "tools", "🛠️", "A curated directory of 1,200+ industry-leading AI resources.", "linear-gradient(135deg, #EC4899 0%, #F472B6 100%)"),
         ("Prompt Library", "prompts", "💡", "Expert-grade prompt engineering frameworks for elite results.", "linear-gradient(135deg, #F59E0B 0%, #FB923C 100%)")
     ]
     
-    for i, (title, key, icon, desc, gradient) in enumerate(features):
+    for i, (title, key, icon, desc, gradient) in enumerate(features_row1):
         with cols[i]:
             st.markdown(f"""
                 <div class="glass-card" style="border-top: 4px solid white !important; background: {gradient}0A !important;">
@@ -242,6 +201,30 @@ def render_home():
             if st.button(f"Dive Into {title}", key=f"btn_h_{key}", use_container_width=True):
                 st.session_state.current_page = key
                 st.rerun()
+    
+    # Feature cards - Second row (NEW!)
+    cols2 = st.columns(3)
+    
+    features_row2 = [
+        ("AI Hacks", "hacks", "🔥", "10x your productivity with curated AI tips, tricks, and workflows.", "linear-gradient(135deg, #EF4444 0%, #F87171 100%)"),
+        ("AI Latest News", "news", "📰", "Real-time AI news from OpenAI, Anthropic, Google, and more.", "linear-gradient(135deg, #10B981 0%, #34D399 100%)"),
+        ("", "", "", "", "")  # Empty placeholder
+    ]
+    
+    for i, (title, key, icon, desc, gradient) in enumerate(features_row2):
+        with cols2[i]:
+            if title:  # Only render if not empty
+                st.markdown(f"""
+                    <div class="glass-card" style="border-top: 4px solid white !important; background: {gradient}0A !important;">
+                        <div style="font-family: Outfit; font-weight:800; font-size:1.2rem; color: #1E293B; margin-bottom: 12px; display: flex; align-items: center;">
+                            <span style="background: {gradient}; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{icon} {title}</span>
+                        </div>
+                        <div style="font-size:0.95rem; color:#475569; margin-bottom: 1.5rem; line-height: 1.5;">{desc}</div>
+                    </div>
+                """, unsafe_allow_html=True)
+                if st.button(f"Dive Into {title}", key=f"btn_h_{key}", use_container_width=True):
+                    st.session_state.current_page = key
+                    st.rerun()
     
     st.markdown("## ⚡ Quick Start")
     
@@ -332,8 +315,7 @@ def main():
     # Render top navigation
     render_top_nav()
     
-    # Show What's New modal (once per version)
-    show_whats_new()
+    # What's New modal removed for compact UI
     
     # Page routing
     if st.session_state.current_page == "home":
@@ -370,6 +352,12 @@ def main():
             st.error("No tutorial selected!")
             st.session_state.current_page = "learning"
             st.rerun()
+    elif st.session_state.current_page == "hacks":
+        from pages import ai_hacks
+        ai_hacks.render()
+    elif st.session_state.current_page == "news":
+        from pages import ai_news
+        ai_news.render()
     elif st.session_state.current_page == "search_results":
         render_search_results()
     else:

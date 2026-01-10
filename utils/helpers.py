@@ -26,15 +26,41 @@ def get_current_user_id() -> Optional[int]:
     return st.session_state.get('user_id')
 
 
-def copy_to_clipboard(text: str, success_message: str = "Copied to clipboard!"):
-    """Display text with a copy button - user can select and copy manually"""
-    st.code(text, language="text")
-    col1, col2 = st.columns([4, 1])
+def copy_to_clipboard(text: str, success_message: str = "Copied to clipboard!", language: str = "text"):
+    """
+    Display text with enhanced copy functionality
+    
+    Args:
+        text: Text to copy
+        success_message: Message to show on copy
+        language: Code language for syntax highlighting
+    """
+    # Display text in a code block (Streamlit auto-adds copy button)
+    st.code(text, language=language)
+    
+    # Additional copy button with instructions
+    col1, col2, col3 = st.columns([2, 1, 1])
+    
     with col2:
-        if st.button("📋 Copy", key=f"copy_{hash(text)}", use_container_width=True):
-            st.toast("✅ Text displayed above - use Ctrl+C to copy", icon="✅")
-            st.info("💡 **Tip:** Select the text above and press Ctrl+C (or Cmd+C on Mac) to copy")
+        if st.button("📋 Copy Text", key=f"copy_{hash(text)}", use_container_width=True):
+            # Show success message
+            st.toast(f"✅ {success_message}", icon="✅")
+            # Show instructions
+            st.info("💡 **Tip:** Use the copy button in the top-right corner of the code block above, or select text and press Ctrl+C (Cmd+C on Mac)")
             return True
+    
+    with col3:
+        # Alternative: Download as file
+        if st.download_button(
+            label="💾 Download",
+            data=text,
+            file_name="content.txt",
+            mime="text/plain",
+            key=f"download_{hash(text)}",
+            use_container_width=True
+        ):
+            st.toast("✅ Downloaded!", icon="💾")
+    
     return False
 
 

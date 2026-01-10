@@ -63,9 +63,9 @@ def render():
     cats = [{"id": "all", "name": "Global", "icon": "🌐"}] + AI_TOOL_CATEGORIES
     
     ccols = st.columns(6)
-    for i, cat in enumerate(cats[:12]): # Show first 12
+    for i, cat in enumerate(cats):
         with ccols[i % 6]:
-            if st.button(f"{cat['icon']} {cat['name'][:8]}", key=f"btn_cat_{cat['id']}", use_container_width=True, type="primary" if sel == cat['id'] else "secondary"):
+            if st.button(f"{cat['icon']} {cat['name']}", key=f"btn_cat_{cat['id']}", use_container_width=True, type="primary" if sel == cat['id'] else "secondary"):
                 st.session_state.final_sector = cat['id']
                 st.rerun()
 

@@ -9,24 +9,38 @@ AI Nexus is a comprehensive Streamlit-based platform for AI professionals to lea
 ## ✨ Features
 
 ### 📚 Learning Hub
-- **35+ Curated Tutorials** across Quick Wins, Deep Dives, and Mastery Tracks
+- **25+ Curated Tutorials** across Quick Wins, Deep Dives, and Mastery Tracks
 - **Completion Tracking** with visual progress indicators
 - **Role-based Recommendations** tailored to your profession
 - **Tutorial Viewer** with step-by-step content
 
 ### 🔧 AI Tools Directory
-- **35 Verified AI Tools** with detailed profiles
+- **47 Verified AI Tools** with detailed profiles
 - **Category Filtering** (Code, Testing, DevOps, Design, etc.)
 - **Global Search** across all content
 - **Favorites System** to save tools to your library
 - **Related Tools** recommendations
 
 ### 💡 Prompt Library
-- **50+ Production-Ready Prompts** for developers
+- **40+ Production-Ready Prompts** for developers
 - **14 Categories** (Coding, Testing, Architecture, Security, etc.)
 - **Prompt Lab** for testing and iterating
 - **Technique Templates** with "Try This" functionality
 - **Share Prompt** feature for collaboration
+
+### 🔥 AI Hacks (NEW!)
+- **10 Productivity Hacks** for AI tools
+- **Curated Tips & Tricks** from ChatGPT, Claude, Cursor, Copilot, etc.
+- **Time-Saving Metrics** for each hack
+- **Step-by-Step Instructions** with examples
+- **Filter by Category, Difficulty, Tool**
+
+### 📰 AI Latest News (NEW!)
+- **Real-Time News** from 8+ major AI sources
+- **Auto-Updated** every 10 minutes via RSS feeds
+- **Trending Topics** extraction
+- **Filter by Source Type & Timeframe**
+- **Direct Links** to full articles
 
 ### 📊 Dashboard
 - **AI Score Tracking** based on assessments
@@ -91,13 +105,17 @@ AI Nexus/
 ├── data/
 │   ├── final_assets.py    # AI tools database
 │   ├── final_prompts.py   # Prompt library
-│   └── final_tutorials.py # Tutorial content
+│   ├── final_tutorials.py # Tutorial content
+│   ├── ai_hacks.py        # AI productivity hacks (NEW)
+│   └── ai_news.py         # Real-time news aggregator (NEW)
 ├── database/
 │   ├── db.py              # Database connection & context manager
 │   ├── models.py          # SQLAlchemy models with ForeignKeys
 │   └── operations.py      # CRUD operations
 ├── pages/
 │   ├── ai_tools_final.py  # Tools directory
+│   ├── ai_hacks.py        # AI Hacks page (NEW)
+│   ├── ai_news.py         # AI News page (NEW)
 │   ├── assessment.py      # Skills quiz
 │   ├── dashboard.py       # User dashboard
 │   ├── learning_hub.py    # Tutorial browser
@@ -105,6 +123,10 @@ AI Nexus/
 │   ├── tool_viewer.py     # Tool detail page
 │   ├── tutorial_viewer.py # Tutorial reader
 │   └── user_profile.py    # Profile management
+├── scripts/               # Content management (NEW)
+│   ├── update_all.py      # Update content
+│   ├── validate_data.py   # Validate data files
+│   └── content_report.py  # Generate reports
 ├── styles/
 │   └── custom_css.py      # Theme & styling (with accessibility)
 ├── utils/
@@ -115,6 +137,8 @@ AI Nexus/
 │   ├── test_prompts.py    # Prompt tests
 │   └── test_helpers.py    # Helper tests
 ├── docs/
+│   ├── CONTENT_UPDATE_GUIDE.md  # Content update process (NEW)
+│   ├── CONTENT_REPORT.md        # Latest content stats (NEW)
 │   └── archive/           # Legacy documentation
 ├── requirements.txt       # Full dependencies
 └── requirements-minimal.txt # Minimal dependencies
@@ -136,6 +160,60 @@ pytest --cov=. --cov-report=html
 # Run specific test file
 pytest tests/test_tutorials.py -v
 ```
+
+---
+
+## 📝 Content Management
+
+Keep all content fresh and up-to-date using our content management scripts:
+
+```bash
+# Generate content report (shows stats and recommendations)
+python scripts/content_report.py
+
+# Validate all data files
+python scripts/validate_data.py
+
+# Update news cache and check freshness
+python scripts/update_all.py
+```
+
+### Content Update Process
+
+1. **Check Current Status:**
+   ```bash
+   python scripts/content_report.py
+   ```
+
+2. **Add New Content:**
+   - Follow templates in `docs/CONTENT_UPDATE_GUIDE.md`
+   - Add to appropriate data file (`ai_hacks.py`, `final_tutorials.py`, etc.)
+
+3. **Validate:**
+   ```bash
+   python scripts/validate_data.py
+   ```
+
+4. **Test Locally:**
+   ```bash
+   streamlit run app.py
+   ```
+
+5. **Commit:**
+   ```bash
+   git add -A
+   git commit -m "Content update: Added X items"
+   ```
+
+### Content Goals
+
+- 📚 Tutorials: 25 → 50 → 100
+- 💡 Prompts: 40 → 100 → 200
+- 🛠️ Tools: 47 → 75 → 150
+- 🔥 Hacks: 10 → 25 → 50
+- 📰 News: Auto-updated every 10 minutes
+
+See `docs/CONTENT_UPDATE_GUIDE.md` for detailed instructions.
 
 ---
 

@@ -25,21 +25,8 @@ def render():
     with col3:
         difficulty_filter = st.selectbox("Proficiency", ["All", "Beginner", "Intermediate", "Advanced"], key="lh_diff_select")
     
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("## 🛰️ Strategic Learning Paths")
     
-    path_cols = st.columns(4)
-    for i, path in enumerate(LEARNING_PATHS):
-        with path_cols[i]:
-            st.markdown(f"""
-                <div class="glass-card" style="text-align: center; border-bottom: 4px solid var(--primary) !important;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">{path['icon']}</div>
-                    <div style="font-family: Outfit; font-weight: 700; color: #1E293B;">{path['name']}</div>
-                    <div style="color: #64748B; font-size: 0.8rem; margin-top: 4px; font-weight: 600;">{path['duration']}</div>
-                </div>
-            """, unsafe_allow_html=True)
-    
-    st.markdown("<br>", unsafe_allow_html=True)
+    # Removed Strategic Learning Paths banner for compact layout
     
     # Tabs for content organization
     tab1, tab2, tab3, tab4 = st.tabs(["🔥 Trending", "📋 For Your Role", "⭐ Recommended", "📚 All Tutorials"])

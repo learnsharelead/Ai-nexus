@@ -344,6 +344,73 @@ REAL_TUTORIALS_DB = [
         "description": "Transform your testing workflow with AI - from test generation to analysis.",
         "topics": ["QA", "Automation"],
         "modules": 10
+    },
+    
+    # NEW TUTORIALS (January 2026)
+    {
+        "id": "dd-8",
+        "title": "LangGraph: Multi-Agent Orchestration",
+        "category": "Generative AI",
+        "duration": "50 min",
+        "difficulty": "Advanced",
+        "role": ["backend_dev", "ml_engineer", "system_architect"],
+        "rating": 4.9,
+        "completions": 1200,
+        "icon": "🕸️",
+        "description": "Build complex multi-agent systems with LangGraph's state management and conditional routing.",
+        "topics": ["LangGraph", "Multi-Agent", "State Management"]
+    },
+    {
+        "id": "dd-9",
+        "title": "CrewAI: Collaborative AI Agents",
+        "category": "Generative AI",
+        "duration": "45 min",
+        "difficulty": "Advanced",
+        "role": ["backend_dev", "ml_engineer"],
+        "rating": 4.8,
+        "completions": 980,
+        "icon": "👥",
+        "description": "Create teams of AI agents that work together on complex tasks using CrewAI framework.",
+        "topics": ["CrewAI", "Multi-Agent", "Collaboration"]
+    },
+    {
+        "id": "qw-11",
+        "title": "Local LLM Setup: Complete Guide",
+        "category": "Infrastructure",
+        "duration": "15 min",
+        "difficulty": "Beginner",
+        "role": ["backend_dev", "fullstack_dev", "ml_engineer"],
+        "rating": 4.9,
+        "completions": 5600,
+        "icon": "🖥️",
+        "description": "Set up Ollama, run multiple models, and integrate with your applications - all locally and free.",
+        "topics": ["Ollama", "Local AI", "Setup"]
+    },
+    {
+        "id": "dd-10",
+        "title": "Production RAG: From Prototype to Scale",
+        "category": "Generative AI",
+        "duration": "55 min",
+        "difficulty": "Advanced",
+        "role": ["backend_dev", "ml_engineer", "system_architect"],
+        "rating": 4.9,
+        "completions": 2100,
+        "icon": "🏗️",
+        "description": "Build production-ready RAG systems with chunking strategies, hybrid search, and evaluation metrics.",
+        "topics": ["RAG", "Production", "Vector DB", "Evaluation"]
+    },
+    {
+        "id": "dd-11",
+        "title": "AutoGen: Multi-Agent Conversations",
+        "category": "Generative AI",
+        "duration": "40 min",
+        "difficulty": "Intermediate",
+        "role": ["backend_dev", "ml_engineer"],
+        "rating": 4.7,
+        "completions": 1450,
+        "icon": "🤝",
+        "description": "Build conversational multi-agent systems with Microsoft's AutoGen framework.",
+        "topics": ["AutoGen", "Multi-Agent", "Conversations"]
     }
 ]
 

@@ -59,6 +59,55 @@ code {
     font-size: 0.9rem !important;
 }
 
+/* Multiselect widget fixes */
+.stMultiSelect [data-baseweb="select"] {
+    background-color: white !important;
+}
+
+.stMultiSelect [data-baseweb="tag"] {
+    background-color: #6366F1 !important;
+    color: white !important;
+}
+
+.stMultiSelect [data-baseweb="tag"] span {
+    color: white !important;
+}
+
+.stMultiSelect [role="option"] {
+    color: #1E293B !important;
+    background-color: white !important;
+}
+
+.stMultiSelect [role="option"]:hover {
+    background-color: #F1F5F9 !important;
+}
+
+.stMultiSelect input {
+    color: #1E293B !important;
+}
+
+.stMultiSelect [data-baseweb="popover"] {
+    background-color: white !important;
+}
+
+/* Selectbox fixes */
+.stSelectbox [data-baseweb="select"] {
+    background-color: white !important;
+}
+
+.stSelectbox [data-baseweb="select"] > div {
+    color: #1E293B !important;
+}
+
+.stSelectbox [role="option"] {
+    color: #1E293B !important;
+    background-color: white !important;
+}
+
+.stSelectbox [role="option"]:hover {
+    background-color: #F1F5F9 !important;
+}
+
 /* Prism Typography */
 h1 {
     font-family: 'Outfit', sans-serif !important;
@@ -144,6 +193,11 @@ h2 {
     color: white !important;
     border: none !important;
     box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3) !important;
+    white-space: normal !important;
+    text-overflow: clip !important;
+    overflow: visible !important;
+    height: auto !important;
+    min-height: 2.5rem !important;
 }
 
 [key^="btn_"] > button:hover {
