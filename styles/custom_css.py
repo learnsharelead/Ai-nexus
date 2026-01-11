@@ -349,5 +349,293 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
     left: 0;
 }
 
+/* ============================================
+   MOBILE RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet Devices (768px and below) */
+@media (max-width: 768px) {
+    /* Typography Scaling */
+    h1 {
+        font-size: 1.75rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    h2 {
+        font-size: 1.25rem !important;
+        margin: 1rem 0 0.5rem 0 !important;
+    }
+    
+    h3 {
+        font-size: 1.1rem !important;
+    }
+    
+    p, div {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+    }
+    
+    /* Cards - Reduce padding for mobile */
+    .glass-card, .metric-card, .tool-card {
+        padding: 1rem !important;
+        border-radius: 12px !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    /* Metric Cards - Stack vertically */
+    .metric-value {
+        font-size: 1.5rem !important;
+    }
+    
+    .metric-label {
+        font-size: 0.7rem !important;
+    }
+    
+    /* Buttons - Touch-friendly sizing */
+    .stButton > button {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.9rem !important;
+        min-height: 44px !important; /* Apple's recommended touch target */
+        width: 100% !important;
+    }
+    
+    [key^="btn_"] > button {
+        min-height: 44px !important;
+        padding: 0.75rem 1rem !important;
+    }
+    
+    /* Navigation - Stack vertically on mobile */
+    [key^="topnav_"] > button {
+        font-size: 0.85rem !important;
+        padding: 0.5rem 0.25rem !important;
+        min-height: 40px !important;
+    }
+    
+    /* Input Fields - Larger for mobile */
+    .stTextInput input, .stTextArea textarea {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+        padding: 0.75rem !important;
+        min-height: 44px !important;
+    }
+    
+    .stSelectbox select {
+        font-size: 16px !important;
+        padding: 0.75rem !important;
+        min-height: 44px !important;
+    }
+    
+    /* Search Input */
+    [key="global_search"] input {
+        font-size: 14px !important;
+        padding: 0.5rem !important;
+    }
+    
+    /* Code Blocks - Horizontal scroll */
+    pre {
+        overflow-x: auto !important;
+        font-size: 0.85rem !important;
+        padding: 0.75rem !important;
+    }
+    
+    /* Expanders - More padding */
+    .streamlit-expanderHeader {
+        padding: 0.75rem !important;
+        font-size: 0.95rem !important;
+    }
+    
+    /* Tabs - Smaller text */
+    .stTabs [data-baseweb="tab-list"] button {
+        font-size: 0.85rem !important;
+        padding: 0.5rem 0.75rem !important;
+    }
+    
+    /* Remove hover effects on touch devices */
+    .tool-card:hover {
+        transform: none !important;
+    }
+    
+    /* Spacing adjustments */
+    .stMarkdown {
+        margin-bottom: 0.75rem !important;
+    }
+}
+
+/* Mobile Phones (480px and below) */
+@media (max-width: 480px) {
+    /* Further reduce typography */
+    h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    h2 {
+        font-size: 1.15rem !important;
+    }
+    
+    h3 {
+        font-size: 1rem !important;
+    }
+    
+    p, div {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Cards - Minimal padding */
+    .glass-card, .metric-card, .tool-card {
+        padding: 0.75rem !important;
+        border-radius: 10px !important;
+    }
+    
+    /* Metric Cards - Smaller values */
+    .metric-value {
+        font-size: 1.25rem !important;
+    }
+    
+    .metric-label {
+        font-size: 0.65rem !important;
+    }
+    
+    /* Buttons - Full width */
+    .stButton > button {
+        padding: 0.65rem 0.75rem !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Navigation - Compact */
+    [key^="topnav_"] > button {
+        font-size: 0.75rem !important;
+        padding: 0.4rem 0.15rem !important;
+    }
+    
+    /* Hide icon text on very small screens, keep emoji */
+    [key^="topnav_"] > button {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    
+    /* Code blocks - Smaller font */
+    pre {
+        font-size: 0.75rem !important;
+        padding: 0.5rem !important;
+    }
+    
+    code {
+        font-size: 0.8rem !important;
+    }
+    
+    /* Reduce margins */
+    .stMarkdown {
+        margin-bottom: 0.5rem !important;
+    }
+    
+    /* Tabs - Very compact */
+    .stTabs [data-baseweb="tab-list"] button {
+        font-size: 0.75rem !important;
+        padding: 0.4rem 0.5rem !important;
+    }
+}
+
+/* Landscape Orientation on Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    .glass-card, .metric-card, .tool-card {
+        padding: 0.75rem !important;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Remove all hover effects */
+    .tool-card:hover,
+    .stButton > button:hover,
+    [key^="btn_"] > button:hover {
+        transform: none !important;
+    }
+    
+    /* Add active state instead */
+    .stButton > button:active,
+    [key^="btn_"] > button:active {
+        transform: scale(0.98) !important;
+        opacity: 0.9 !important;
+    }
+    
+    /* Larger tap targets */
+    button, a, input, select {
+        min-height: 44px !important;
+        min-width: 44px !important;
+    }
+}
+
+/* High DPI / Retina Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Sharper borders */
+    .glass-card, .metric-card, .tool-card {
+        border-width: 0.5px !important;
+    }
+}
+
+/* Small Desktop / Large Tablet (1024px and below) */
+@media (max-width: 1024px) {
+    /* Reduce column gaps */
+    .row-widget.stHorizontal {
+        gap: 0.5rem !important;
+    }
+    
+    /* Adjust container width */
+    .main .block-container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        max-width: 100% !important;
+    }
+}
+
+/* Very Small Screens (320px - iPhone SE) */
+@media (max-width: 320px) {
+    h1 {
+        font-size: 1.25rem !important;
+    }
+    
+    h2 {
+        font-size: 1rem !important;
+    }
+    
+    p, div {
+        font-size: 0.85rem !important;
+    }
+    
+    .glass-card, .metric-card, .tool-card {
+        padding: 0.5rem !important;
+    }
+    
+    .stButton > button {
+        font-size: 0.8rem !important;
+        padding: 0.5rem !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    /* Hide navigation and interactive elements */
+    [key^="topnav_"], .stButton, header, footer {
+        display: none !important;
+    }
+    
+    /* Optimize for print */
+    .glass-card, .metric-card, .tool-card {
+        break-inside: avoid !important;
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+    }
+    
+    /* Black text for print */
+    * {
+        color: #000 !important;
+        background: #fff !important;
+    }
+}
+
 </style>
 """
