@@ -465,8 +465,1600 @@ Version control for your binary model artifacts. "Deploy v3.2.1 to production".
         ]
     },
     
-    # NEW TUTORIAL CONTENT (January 2026)
+    # Quick Wins Content (qw-6 to qw-10)
+    "qw-6": {
+        "title": "5 ChatGPT Prompts Every Developer Needs",
+        "sections": [
+            {
+                "title": "Essential Developer Prompts",
+                "content": """
+These 5 prompts will transform your daily development workflow.
+
+### 1. Code Explainer
+```
+Explain this code in simple terms, including what each part does:
+[paste your code]
+```
+
+**Use Case:** Understanding legacy code or complex algorithms.
+
+### 2. Bug Detective
+```
+I'm getting this error: [error message]
+Here's my code: [code]
+What's causing this and how do I fix it?
+```
+
+**Pro Tip:** Include the full stack trace for better results.
+
+### 3. Code Optimizer
+```
+Review this code for performance issues and suggest optimizations:
+[code]
+Focus on: [time complexity / memory usage / readability]
+```
+
+### 4. Test Generator
+```
+Generate comprehensive unit tests for this function:
+[function code]
+Include edge cases and error scenarios.
+```
+
+### 5. Documentation Writer
+```
+Write clear documentation for this code including:
+- Purpose and usage
+- Parameters and return values
+- Examples
+[code]
+```
+
+**Time Saved:** ~2 hours per day using these prompts effectively.
+                """
+            }
+        ],
+        "quiz": [
+            {
+                "question": "What should you include when asking ChatGPT to debug code?",
+                "options": ["Just the error message", "Full stack trace and relevant code", "Only the function name", "The entire codebase"],
+                "correct": 1,
+                "explanation": "Including both the full stack trace and relevant code gives ChatGPT the context needed to identify the root cause and suggest accurate fixes."
+            }
+        ]
+    },
+
+    "qw-7": {
+        "title": "AI-Powered Regex Builder",
+        "sections": [
+            {
+                "title": "Never Write Regex Again",
+                "content": """
+Let AI handle the complexity of regular expressions.
+
+### The Prompt Template
+```
+Create a regex pattern that:
+[describe what you want to match]
+
+Test it against these examples:
+Valid: [examples that should match]
+Invalid: [examples that should NOT match]
+```
+
+### Real Examples
+
+**Email Validation:**
+```
+Create a regex for validating email addresses.
+Valid: user@example.com, john.doe@company.co.uk
+Invalid: @example.com, user@, user@.com
+```
+
+**Result:**
+```python
+import re
+pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+```
+
+**Extract Phone Numbers:**
+```
+Extract US phone numbers in formats:
+(123) 456-7890
+123-456-7890
+123.456.7890
+```
+
+**Password Strength:**
+```
+Regex for password with:
+- At least 8 characters
+- One uppercase, one lowercase
+- One digit, one special character
+```
+
+### Advanced: Explanation Request
+```
+Explain this regex pattern step by step:
+^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$
+```
+
+AI will break down each component with clear explanations.
+                """
+            }
+        ],
+        "quiz": [
+            {
+                "question": "What's the best way to use AI for regex creation?",
+                "options": ["Just ask for a pattern", "Provide examples of valid and invalid matches", "Copy from Stack Overflow", "Use trial and error"],
+                "correct": 1,
+                "explanation": "Providing concrete examples of what should and shouldn't match helps AI generate accurate regex patterns that meet your specific needs."
+            }
+        ]
+    },
+
+    "qw-8": {
+        "title": "Auto-Generate Unit Tests with AI",
+        "sections": [
+            {
+                "title": "Instant Test Coverage",
+                "content": """
+Generate comprehensive test suites in seconds.
+
+### The Prompt Formula
+```
+Generate unit tests for this [language] function:
+[paste function]
+
+Include tests for:
+1. Happy path scenarios
+2. Edge cases
+3. Error handling
+4. Boundary conditions
+
+Use [testing framework: pytest/jest/junit]
+```
+
+### Example: Python Function
+```python
+def calculate_discount(price, user_tier):
+    if price < 0:
+        raise ValueError("Price cannot be negative")
+    
+    discounts = {"bronze": 0.05, "silver": 0.10, "gold": 0.15}
+    discount = discounts.get(user_tier, 0)
+    return price * (1 - discount)
+```
+
+### AI-Generated Tests
+```python
+import pytest
+
+def test_calculate_discount_bronze():
+    assert calculate_discount(100, "bronze") == 95.0
+
+def test_calculate_discount_silver():
+    assert calculate_discount(100, "silver") == 90.0
+
+def test_calculate_discount_gold():
+    assert calculate_discount(100, "gold") == 85.0
+
+def test_calculate_discount_invalid_tier():
+    assert calculate_discount(100, "platinum") == 100.0
+
+def test_calculate_discount_negative_price():
+    with pytest.raises(ValueError):
+        calculate_discount(-10, "gold")
+
+def test_calculate_discount_zero_price():
+    assert calculate_discount(0, "gold") == 0.0
+
+def test_calculate_discount_large_price():
+    assert calculate_discount(10000, "gold") == 8500.0
+```
+
+### Advanced: Test Data Generation
+```
+Generate realistic test data for testing this API endpoint:
+[endpoint details]
+Include: valid requests, malformed requests, edge cases
+```
+                """
+            }
+        ],
+        "quiz": [
+            {
+                "question": "What types of tests should AI-generated test suites include?",
+                "options": ["Only happy path", "Happy path, edge cases, and error handling", "Just one test", "Random tests"],
+                "correct": 1,
+                "explanation": "Comprehensive test suites should cover happy paths, edge cases, error handling, and boundary conditions to ensure robust code quality."
+            }
+        ]
+    },
+
+    "qw-9": {
+        "title": "Debug Faster with AI Explanations",
+        "sections": [
+            {
+                "title": "AI-Powered Debugging",
+                "content": """
+Turn cryptic errors into clear solutions.
+
+### The Debug Prompt Template
+```
+I'm getting this error:
+[full error message and stack trace]
+
+Here's the relevant code:
+[code snippet]
+
+Context:
+- What I'm trying to do: [goal]
+- What I expected: [expected behavior]
+- What's happening: [actual behavior]
+
+Please explain the error and suggest a fix.
+```
+
+### Real Example: Python Error
+```
+I'm getting this error:
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+Code:
+def calculate_total(items):
+    total = 0
+    for item in items:
+        total = total + item['price']
+    return total
+
+items = [{'price': '10'}, {'price': '20'}]
+result = calculate_total(items)
+```
+
+### AI Response
+```
+The error occurs because item['price'] is a string ('10'), 
+not an integer. Python can't add strings to integers.
+
+Fix:
+def calculate_total(items):
+    total = 0
+    for item in items:
+        total = total + int(item['price'])  # Convert to int
+    return total
+
+Better approach with error handling:
+def calculate_total(items):
+    total = 0
+    for item in items:
+        try:
+            total += int(item['price'])
+        except (ValueError, KeyError) as e:
+            print(f"Invalid price for item: {e}")
+    return total
+```
+
+### Advanced Debugging Prompts
+
+**Performance Issues:**
+```
+This function is slow with large datasets:
+[code]
+Profile it and suggest optimizations.
+```
+
+**Memory Leaks:**
+```
+My application's memory usage keeps growing:
+[code]
+Identify potential memory leaks.
+```
+
+**Race Conditions:**
+```
+I'm getting inconsistent results in concurrent execution:
+[code]
+Check for race conditions and suggest thread-safe alternatives.
+```
+                """
+            }
+        ],
+        "quiz": [
+            {
+                "question": "What information should you provide when asking AI to debug code?",
+                "options": ["Just the error message", "Error, code, and context about what you're trying to do", "Only the function name", "The entire project"],
+                "correct": 1,
+                "explanation": "Providing the error message, relevant code, and context about your goal helps AI understand the problem and provide accurate, targeted solutions."
+            }
+        ]
+    },
+
+    "qw-10": {
+        "title": "AI for SQL Query Optimization",
+        "sections": [
+            {
+                "title": "Optimize Slow Queries",
+                "content": """
+Use AI to identify and fix SQL performance bottlenecks.
+
+### The Optimization Prompt
+```
+Optimize this SQL query for better performance:
+[paste query]
+
+Table schemas:
+[table structures and indexes]
+
+Current execution time: [time]
+Expected result: [description]
+```
+
+### Example: Slow Query
+```sql
+SELECT u.name, COUNT(o.id) as order_count
+FROM users u
+LEFT JOIN orders o ON u.id = o.user_id
+WHERE o.created_at > '2024-01-01'
+GROUP BY u.name
+ORDER BY order_count DESC;
+```
+
+### AI-Optimized Version
+```sql
+-- Add index on orders.created_at and orders.user_id
+CREATE INDEX idx_orders_created_user ON orders(created_at, user_id);
+
+-- Optimized query
+SELECT u.name, COUNT(o.id) as order_count
+FROM users u
+INNER JOIN orders o ON u.id = o.user_id
+WHERE o.created_at > '2024-01-01'
+GROUP BY u.id, u.name  -- Include u.id for better grouping
+ORDER BY order_count DESC;
+```
+
+**Improvements:**
+- Changed LEFT JOIN to INNER JOIN (we filter on orders anyway)
+- Added composite index
+- Group by primary key for efficiency
+
+### Query Explanation Prompt
+```
+Explain what this complex query does in simple terms:
+[query]
+```
+
+### Index Suggestion Prompt
+```
+Given these tables and common queries:
+Tables: [schemas]
+Queries: [list of frequent queries]
+
+Suggest optimal indexes.
+```
+
+### Query Generation
+```
+Generate a SQL query to:
+[describe what you need]
+
+Tables available:
+- users (id, name, email, created_at)
+- orders (id, user_id, total, created_at)
+- products (id, name, price)
+```
+
+**Example Output:**
+```sql
+-- Get top 10 customers by total spending in 2024
+SELECT 
+    u.name,
+    u.email,
+    SUM(o.total) as total_spent,
+    COUNT(o.id) as order_count
+FROM users u
+INNER JOIN orders o ON u.id = o.user_id
+WHERE YEAR(o.created_at) = 2024
+GROUP BY u.id, u.name, u.email
+ORDER BY total_spent DESC
+LIMIT 10;
+```
+                """
+            }
+        ],
+        "quiz": [
+            {
+                "question": "What should you provide when asking AI to optimize a SQL query?",
+                "options": ["Just the query", "Query, table schemas, and current performance metrics", "Only table names", "The database type"],
+                "correct": 1,
+                "explanation": "Providing the query, table schemas, indexes, and performance metrics helps AI understand the context and suggest targeted optimizations."
+            }
+        ]
+    },
+
+    # Deep Dive Content (dd-6 to dd-10)
+    "dd-6": {
+        "title": "Cursor IDE Masterclass",
+        "sections": [
+            {
+                "title": "The AI-Native Code Editor",
+                "content": """
+Cursor is VS Code reimagined with AI at its core.
+
+### Core Features
+
+**1. Cmd+K: Inline Editing**
+- Select code, press Cmd+K (Ctrl+K on Windows)
+- Describe the change you want
+- AI edits in place
+
+**Example:**
+```
+Select a function → Cmd+K → "Add error handling and logging"
+```
+
+**2. Composer: Multi-File Editing**
+- Cmd+I to open Composer
+- Describe changes across multiple files
+- AI understands your codebase structure
+
+**Example:**
+```
+"Add a new user authentication endpoint with:
+- Route in routes/auth.js
+- Controller in controllers/authController.js  
+- Validation middleware
+- Unit tests"
+```
+
+**3. Chat with Codebase**
+- @ mention files or folders
+- Ask questions about your code
+- Get contextual answers
+
+**Example:**
+```
+@database/models.py How is user authentication implemented?
+```
+
+### Advanced Techniques
+
+**Codebase Indexing:**
+```
+Settings → Features → Enable Codebase Indexing
+```
+This allows Cursor to understand your entire project.
+
+**Custom Rules:**
+Create `.cursorrules` file in project root:
+```
+- Use TypeScript strict mode
+- Follow Airbnb style guide
+- Add JSDoc comments to all functions
+- Prefer functional components in React
+```
+
+**Tab Autocomplete:**
+- More powerful than Copilot
+- Understands recent edits
+- Multi-line suggestions
+
+### Workflow Example: Building a Feature
+
+1. **Plan:** Chat with AI about architecture
+2. **Scaffold:** Use Composer to create files
+3. **Implement:** Cmd+K for inline edits
+4. **Test:** Generate tests with AI
+5. **Refactor:** Ask AI to improve code quality
+                """
+            }
+        ],
+        "quiz": [
+            {
+                "question": "What is Cursor's Composer feature used for?",
+                "options": ["Writing music", "Multi-file editing across codebase", "Compiling code", "Creating databases"],
+                "correct": 1,
+                "explanation": "Composer (Cmd+I) allows you to make coordinated changes across multiple files by describing what you want at a high level."
+            }
+        ]
+    },
+
+    "dd-7": {
+        "title": "GitHub Copilot Advanced Patterns",
+        "sections": [
+            {
+                "title": "Beyond Basic Autocomplete",
+                "content": """
+Master advanced Copilot techniques for 10x productivity.
+
+### 1. Prompt Files (.github/copilot-instructions.md)
+```markdown
+# Project Guidelines
+
+## Code Style
+- Use TypeScript with strict mode
+- Prefer async/await over promises
+- Add comprehensive error handling
+
+## Testing
+- Write tests for all public functions
+- Use Jest for unit tests
+- Aim for 80%+ coverage
+
+## Documentation
+- Add JSDoc comments
+- Include usage examples
+```
+
+Copilot will follow these rules automatically!
+
+### 2. Workspace Mode
+```
+Cmd+Shift+P → "Copilot: Open Chat"
+Type: @workspace
+```
+
+Ask questions about your entire codebase:
+```
+@workspace How is authentication handled?
+@workspace Where are API endpoints defined?
+@workspace Show me all database models
+```
+
+### 3. Slash Commands in Chat
+
+**/explain** - Explain selected code
+```
+Select complex function → /explain
+```
+
+**/fix** - Fix bugs
+```
+Select buggy code → /fix
+```
+
+**/tests** - Generate tests
+```
+Select function → /tests
+```
+
+**/doc** - Generate documentation
+```
+Select code → /doc
+```
+
+### 4. Context-Aware Completions
+
+**Pattern: Comment-Driven Development**
+```javascript
+// Function to validate email and send welcome email
+// Returns true if successful, throws error otherwise
+async function registerUser(email, name) {
+    // Copilot will suggest the implementation
+}
+```
+
+**Pattern: Example-Driven**
+```python
+# Example usage:
+# result = calculate_tax(income=50000, state="CA")
+# result = {"federal": 5000, "state": 2500, "total": 7500}
+
+def calculate_tax(income, state):
+    # Copilot infers the structure from example
+```
+
+### 5. Copilot for CLI
+```bash
+# Install
+gh extension install github/gh-copilot
+
+# Use
+gh copilot suggest "find all large files"
+gh copilot explain "git rebase -i HEAD~3"
+```
+
+### Advanced Workflow
+
+**1. Architecture Planning:**
+```
+// Create a REST API for a blog with:
+// - Posts (CRUD)
+// - Comments (nested under posts)
+// - User authentication
+// - Rate limiting
+```
+
+**2. Implementation:**
+Let Copilot suggest the structure, then refine.
+
+**3. Testing:**
+```
+// Generate comprehensive tests for the above API
+```
+
+**4. Documentation:**
+```
+// Generate API documentation in OpenAPI format
+```
+                """
+            }
+        ],
+        "quiz": [
+            {
+                "question": "What is the purpose of .github/copilot-instructions.md?",
+                "options": ["Store API keys", "Define project-specific guidelines for Copilot", "Configure GitHub Actions", "List dependencies"],
+                "correct": 1,
+                "explanation": "Copilot-instructions.md allows you to define project-specific coding standards and guidelines that Copilot will automatically follow."
+            }
+        ]
+    },
+
     "dd-8": {
+        "title": "Building with the Claude API",
+        "sections": [
+            {
+                "title": "Production Claude Applications",
+                "content": """
+Claude excels at reasoning, coding, and long-context tasks.
+
+### Setup
+```python
+pip install anthropic
+
+import anthropic
+
+client = anthropic.Anthropic(
+    api_key="your-api-key"
+)
+```
+
+### Basic Usage
+```python
+message = client.messages.create(
+    model="claude-3-5-sonnet-20241022",
+    max_tokens=1024,
+    messages=[
+        {"role": "user", "content": "Explain quantum computing"}
+    ]
+)
+
+print(message.content[0].text)
+```
+
+### System Prompts
+```python
+message = client.messages.create(
+    model="claude-3-5-sonnet-20241022",
+    max_tokens=1024,
+    system="You are a senior Python developer. Provide code with best practices.",
+    messages=[
+        {"role": "user", "content": "Create a REST API for user management"}
+    ]
+)
+```
+
+### Tool Use (Function Calling)
+```python
+tools = [
+    {
+        "name": "get_weather",
+        "description": "Get current weather for a location",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "City name"
+                }
+            },
+            "required": ["location"]
+        }
+    }
+]
+
+message = client.messages.create(
+    model="claude-3-5-sonnet-20241022",
+    max_tokens=1024,
+    tools=tools,
+    messages=[
+        {"role": "user", "content": "What's the weather in San Francisco?"}
+    ]
+)
+
+# Handle tool calls
+if message.stop_reason == "tool_use":
+    tool_use = next(block for block in message.content if block.type == "tool_use")
+    
+    if tool_use.name == "get_weather":
+        # Call your actual weather API
+        weather_data = get_weather_api(tool_use.input["location"])
+        
+        # Send result back to Claude
+        response = client.messages.create(
+            model="claude-3-5-sonnet-20241022",
+            max_tokens=1024,
+            tools=tools,
+            messages=[
+                {"role": "user", "content": "What's the weather in San Francisco?"},
+                {"role": "assistant", "content": message.content},
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "tool_result",
+                            "tool_use_id": tool_use.id,
+                            "content": str(weather_data)
+                        }
+                    ]
+                }
+            ]
+        )
+```
+
+### Streaming Responses
+```python
+with client.messages.stream(
+    model="claude-3-5-sonnet-20241022",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Write a story"}]
+) as stream:
+    for text in stream.text_stream:
+        print(text, end="", flush=True)
+```
+
+### Vision Capabilities
+```python
+import base64
+
+with open("image.jpg", "rb") as f:
+    image_data = base64.standard_b64encode(f.read()).decode("utf-8")
+
+message = client.messages.create(
+    model="claude-3-5-sonnet-20241022",
+    max_tokens=1024,
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "image",
+                    "source": {
+                        "type": "base64",
+                        "media_type": "image/jpeg",
+                        "data": image_data
+                    }
+                },
+                {
+                    "type": "text",
+                    "text": "Describe this image in detail"
+                }
+            ]
+        }
+    ]
+)
+```
+
+### Best Practices
+
+**1. Use System Prompts for Consistency**
+**2. Implement Retry Logic**
+```python
+from tenacity import retry, stop_after_attempt, wait_exponential
+
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=10))
+def call_claude(prompt):
+    return client.messages.create(...)
+```
+
+**3. Cache System Prompts (for cost savings)**
+**4. Monitor Token Usage**
+```python
+print(f"Input tokens: {message.usage.input_tokens}")
+print(f"Output tokens: {message.usage.output_tokens}")
+```
+                """
+            }
+        ],
+        "quiz": [
+            {
+                "question": "What is Claude's tool use feature designed for?",
+                "options": ["Image generation", "Function calling and external API integration", "Fine-tuning", "Data storage"],
+                "correct": 1,
+                "explanation": "Tool use allows Claude to call external functions and APIs, enabling it to perform actions beyond text generation like fetching data or executing code."
+            }
+        ]
+    },
+
+    "dd-9": {
+        "title": "AI Image Generation for Developers",
+        "sections": [
+            {
+                "title": "Integrating Image Generation APIs",
+                "content": """
+Add AI image generation to your applications.
+
+### DALL-E 3 (OpenAI)
+```python
+from openai import OpenAI
+
+client = OpenAI(api_key="your-key")
+
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="A futuristic city with flying cars, cyberpunk style",
+    size="1024x1024",
+    quality="standard",  # or "hd"
+    n=1
+)
+
+image_url = response.data[0].url
+```
+
+### Stable Diffusion (Stability AI)
+```python
+import requests
+
+url = "https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image"
+
+headers = {
+    "Authorization": f"Bearer {api_key}",
+    "Content-Type": "application/json"
+}
+
+body = {
+    "text_prompts": [
+        {
+            "text": "A serene mountain landscape at sunset",
+            "weight": 1
+        }
+    ],
+    "cfg_scale": 7,
+    "height": 1024,
+    "width": 1024,
+    "samples": 1,
+    "steps": 30
+}
+
+response = requests.post(url, headers=headers, json=body)
+data = response.json()
+
+# Save image
+import base64
+for i, image in enumerate(data["artifacts"]):
+    with open(f"output_{i}.png", "wb") as f:
+        f.write(base64.b64decode(image["base64"]))
+```
+
+### Midjourney (via API)
+```python
+# Using unofficial API wrapper
+from midjourney_api import Midjourney
+
+mj = Midjourney(token="your-token")
+
+# Generate image
+result = mj.imagine("a magical forest with glowing mushrooms --ar 16:9 --v 6")
+
+# Get result
+image_url = result.get_image_url()
+```
+
+### Prompt Engineering for Images
+
+**Structure:**
+```
+[Subject] + [Style] + [Mood] + [Technical Parameters]
+```
+
+**Examples:**
+
+**Product Photography:**
+```
+A sleek smartphone on a marble surface, 
+professional product photography, 
+studio lighting, 
+high resolution, 
+clean background
+```
+
+**UI Design:**
+```
+Modern dashboard interface for analytics app,
+minimalist design,
+blue and white color scheme,
+flat design style,
+4k resolution
+```
+
+**Character Design:**
+```
+A friendly robot character,
+Pixar animation style,
+warm lighting,
+detailed textures,
+white background
+```
+
+### Advanced Techniques
+
+**Negative Prompts (Stable Diffusion):**
+```python
+body = {
+    "text_prompts": [
+        {"text": "beautiful landscape", "weight": 1},
+        {"text": "people, buildings, cars", "weight": -1}  # Avoid these
+    ]
+}
+```
+
+**Image-to-Image:**
+```python
+# DALL-E
+response = client.images.edit(
+    image=open("input.png", "rb"),
+    mask=open("mask.png", "rb"),
+    prompt="Add a sunset sky",
+    n=1,
+    size="1024x1024"
+)
+```
+
+**Variations:**
+```python
+response = client.images.create_variation(
+    image=open("original.png", "rb"),
+    n=3,
+    size="1024x1024"
+)
+```
+
+### Production Integration
+
+**1. Async Generation:**
+```python
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+
+async def generate_images(prompts):
+    with ThreadPoolExecutor() as executor:
+        loop = asyncio.get_event_loop()
+        tasks = [
+            loop.run_in_executor(executor, generate_single_image, prompt)
+            for prompt in prompts
+        ]
+        return await asyncio.gather(*tasks)
+```
+
+**2. Caching:**
+```python
+import hashlib
+import os
+
+def get_or_generate_image(prompt):
+    # Create hash of prompt
+    prompt_hash = hashlib.md5(prompt.encode()).hexdigest()
+    cache_path = f"cache/{prompt_hash}.png"
+    
+    if os.path.exists(cache_path):
+        return cache_path
+    
+    # Generate new image
+    image_url = generate_image(prompt)
+    download_image(image_url, cache_path)
+    return cache_path
+```
+
+**3. Cost Optimization:**
+- Use lower resolution for previews
+- Implement rate limiting
+- Cache frequently requested images
+- Use cheaper models for drafts
+                """
+            }
+        ],
+        "quiz": [
+            {
+                "question": "What is a negative prompt in image generation?",
+                "options": ["A bad prompt", "Elements to avoid in the generated image", "A prompt that generates dark images", "An error message"],
+                "correct": 1,
+                "explanation": "Negative prompts specify elements that should NOT appear in the generated image, helping to refine and control the output."
+            }
+        ]
+    },
+
+    "dd-10": {
+        "title": "API Testing with AI Assistants",
+        "sections": [
+            {
+                "title": "Automated API Test Generation",
+                "content": """
+Use AI to generate comprehensive API test suites.
+
+### From OpenAPI Spec
+```
+Given this OpenAPI specification:
+[paste spec]
+
+Generate a complete test suite using pytest that covers:
+1. All endpoints
+2. Success cases (200, 201, 204)
+3. Error cases (400, 401, 403, 404, 500)
+4. Edge cases
+5. Authentication flows
+```
+
+### Example Output
+```python
+import pytest
+import requests
+
+BASE_URL = "https://api.example.com"
+API_KEY = "test-key"
+
+class TestUserAPI:
+    
+    def test_create_user_success(self):
+        payload = {
+            "name": "John Doe",
+            "email": "john@example.com"
+        }
+        response = requests.post(
+            f"{BASE_URL}/users",
+            json=payload,
+            headers={"Authorization": f"Bearer {API_KEY}"}
+        )
+        assert response.status_code == 201
+        assert "id" in response.json()
+        assert response.json()["email"] == payload["email"]
+    
+    def test_create_user_invalid_email(self):
+        payload = {
+            "name": "John Doe",
+            "email": "invalid-email"
+        }
+        response = requests.post(
+            f"{BASE_URL}/users",
+            json=payload,
+            headers={"Authorization": f"Bearer {API_KEY}"}
+        )
+        assert response.status_code == 400
+        assert "error" in response.json()
+    
+    def test_create_user_unauthorized(self):
+        payload = {
+            "name": "John Doe",
+            "email": "john@example.com"
+        }
+        response = requests.post(
+            f"{BASE_URL}/users",
+            json=payload
+        )
+        assert response.status_code == 401
+    
+    def test_get_user_success(self):
+        user_id = "123"
+        response = requests.get(
+            f"{BASE_URL}/users/{user_id}",
+            headers={"Authorization": f"Bearer {API_KEY}"}
+        )
+        assert response.status_code == 200
+        assert response.json()["id"] == user_id
+    
+    def test_get_user_not_found(self):
+        response = requests.get(
+            f"{BASE_URL}/users/999999",
+            headers={"Authorization": f"Bearer {API_KEY}"}
+        )
+        assert response.status_code == 404
+```
+
+### Contract Testing
+```
+Generate contract tests using Pact for this API:
+[API details]
+
+Include:
+- Provider contract
+- Consumer contract
+- Verification tests
+```
+
+### Load Testing
+```
+Create a Locust load test script for this API:
+Endpoint: POST /api/orders
+Expected load: 100 requests/second
+Test duration: 5 minutes
+
+Include:
+- Realistic user behavior
+- Think time between requests
+- Proper error handling
+```
+
+**AI-Generated Locust Script:**
+```python
+from locust import HttpUser, task, between
+
+class APIUser(HttpUser):
+    wait_time = between(1, 3)
+    
+    def on_start(self):
+        # Login
+        response = self.client.post("/auth/login", json={
+            "username": "test@example.com",
+            "password": "password123"
+        })
+        self.token = response.json()["token"]
+    
+    @task(3)
+    def create_order(self):
+        self.client.post(
+            "/api/orders",
+            json={
+                "items": [{"id": 1, "quantity": 2}],
+                "total": 29.99
+            },
+            headers={"Authorization": f"Bearer {self.token}"}
+        )
+    
+    @task(1)
+    def get_orders(self):
+        self.client.get(
+            "/api/orders",
+            headers={"Authorization": f"Bearer {self.token}"}
+        )
+```
+
+### Mocking External APIs
+```
+Generate mock responses for this third-party API:
+[API documentation]
+
+Use responses library for Python
+Include various scenarios: success, timeout, rate limit
+```
+
+### Security Testing
+```
+Generate security tests for this API:
+- SQL injection attempts
+- XSS attempts  
+- Authentication bypass
+- Rate limiting validation
+- CORS configuration
+```
+
+### Advanced: AI-Powered Test Maintenance
+
+**Update Tests After API Changes:**
+```
+The API has changed:
+Old: POST /users (returns 200)
+New: POST /users (returns 201 with Location header)
+
+Update the test suite accordingly.
+```
+
+**Generate Test Data:**
+```
+Generate 100 realistic test users with:
+- Valid email addresses
+- Diverse names
+- Various age ranges
+- Different countries
+
+Format as JSON array.
+```
+                """
+            }
+        ],
+        "quiz": [
+            {
+                "question": "What should comprehensive API tests cover?",
+                "options": ["Only success cases", "Success cases, error cases, edge cases, and auth flows", "Just one endpoint", "Only GET requests"],
+                "correct": 1,
+                "explanation": "Comprehensive API tests should cover all endpoints with success cases, various error scenarios, edge cases, and authentication/authorization flows."
+            }
+        ]
+    },
+
+    # Mastery Track Content (mt-4, mt-5)
+    "mt-4": {
+        "title": "Full-Stack AI Applications",
+        "sections": [
+            {
+                "title": "Building Production AI Apps",
+                "content": """
+A comprehensive 30-hour track to build complete AI-powered applications.
+
+### Module 1: Architecture (4 hours)
+
+**Topics:**
+- Microservices vs Monolith for AI apps
+- API Gateway patterns
+- Database selection (SQL vs NoSQL vs Vector)
+- Caching strategies (Redis for LLM responses)
+- Queue systems (Celery, RabbitMQ)
+
+**Project:** Design architecture for an AI-powered customer support system
+
+### Module 2: Frontend Integration (6 hours)
+
+**React + AI:**
+```javascript
+import { useState } from 'react';
+
+function AIChat() {
+    const [messages, setMessages] = useState([]);
+    const [input, setInput] = useState('');
+    const [streaming, setStreaming] = useState(false);
+
+    const sendMessage = async () => {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: input })
+        });
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            
+            const chunk = decoder.decode(value);
+            setMessages(prev => [...prev, { text: chunk, role: 'assistant' }]);
+        }
+    };
+
+    return (
+        <div className="chat-container">
+            {messages.map((msg, i) => (
+                <div key={i} className={msg.role}>{msg.text}</div>
+            ))}
+            <input value={input} onChange={e => setInput(e.target.value)} />
+            <button onClick={sendMessage}>Send</button>
+        </div>
+    );
+}
+```
+
+### Module 3: Backend Development (8 hours)
+
+**FastAPI + LangChain:**
+```python
+from fastapi import FastAPI, WebSocket
+from langchain_openai import ChatOpenAI
+from langchain.chains import ConversationChain
+from langchain.memory import ConversationBufferMemory
+
+app = FastAPI()
+
+@app.websocket("/ws/chat")
+async def chat_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    
+    llm = ChatOpenAI(model="gpt-4", streaming=True)
+    memory = ConversationBufferMemory()
+    chain = ConversationChain(llm=llm, memory=memory)
+    
+    while True:
+        message = await websocket.receive_text()
+        
+        async for chunk in chain.astream({"input": message}):
+            await websocket.send_text(chunk)
+```
+
+### Module 4: Database & Vector Stores (4 hours)
+
+**Hybrid Storage:**
+```python
+from sqlalchemy import create_engine
+from pinecone import Pinecone
+
+# Traditional data
+engine = create_engine('postgresql://...')
+
+# Vector data
+pc = Pinecone(api_key="...")
+index = pc.Index("documents")
+
+# Store document
+def store_document(doc_id, text, metadata):
+    # Store in PostgreSQL
+    with engine.connect() as conn:
+        conn.execute(
+            "INSERT INTO documents (id, text, metadata) VALUES (%s, %s, %s)",
+            (doc_id, text, metadata)
+        )
+    
+    # Store embedding in Pinecone
+    embedding = get_embedding(text)
+    index.upsert([(doc_id, embedding, metadata)])
+```
+
+### Module 5: Authentication & Security (3 hours)
+
+- JWT implementation
+- API key management
+- Rate limiting
+- Input validation
+- Prompt injection prevention
+
+### Module 6: Deployment (5 hours)
+
+**Docker Compose:**
+```yaml
+version: '3.8'
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+  
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+    depends_on:
+      - db
+      - redis
+  
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  
+  redis:
+    image: redis:7
+```
+
+### Final Project (10 hours)
+
+Build a complete AI-powered application:
+- Document Q&A system
+- User authentication
+- Real-time chat
+- Document upload
+- Analytics dashboard
+- Production deployment
+                """
+            }
+        ],
+        "quiz": [
+            {
+                "question": "Why use Redis in AI applications?",
+                "options": ["Store user passwords", "Cache LLM responses to reduce costs and latency", "Replace the database", "Generate embeddings"],
+                "correct": 1,
+                "explanation": "Redis is ideal for caching LLM responses because it provides fast in-memory storage, reducing API costs and improving response times for repeated queries."
+            }
+        ]
+    },
+
+    "mt-5": {
+        "title": "AI for QA Engineers",
+        "sections": [
+            {
+                "title": "Transform Testing with AI",
+                "content": """
+An 18-hour comprehensive track for QA professionals.
+
+### Module 1: AI-Powered Test Generation (4 hours)
+
+**Automated Test Creation:**
+```python
+# Using AI to generate tests from user stories
+
+user_story = '''
+As a user, I want to reset my password
+So that I can regain access if I forget it
+
+Acceptance Criteria:
+- User enters email address
+- System sends reset link
+- Link expires after 24 hours
+- User sets new password
+'''
+
+# AI generates:
+import pytest
+
+class TestPasswordReset:
+    
+    def test_request_password_reset_valid_email(self):
+        response = client.post('/auth/reset-password', json={
+            'email': 'user@example.com'
+        })
+        assert response.status_code == 200
+        assert 'Reset link sent' in response.json()['message']
+    
+    def test_request_password_reset_invalid_email(self):
+        response = client.post('/auth/reset-password', json={
+            'email': 'nonexistent@example.com'
+        })
+        # Should still return 200 for security
+        assert response.status_code == 200
+    
+    def test_reset_link_expires_after_24_hours(self):
+        # Generate reset token
+        token = generate_reset_token('user@example.com')
+        
+        # Fast-forward time
+        with freeze_time(datetime.now() + timedelta(hours=25)):
+            response = client.post(f'/auth/reset-password/{token}', json={
+                'new_password': 'NewSecure123!'
+            })
+            assert response.status_code == 400
+            assert 'expired' in response.json()['error'].lower()
+```
+
+### Module 2: Visual Testing with AI (3 hours)
+
+**AI-Powered Screenshot Comparison:**
+```python
+from playwright.sync_api import sync_playwright
+from PIL import Image
+import imagehash
+
+def test_visual_regression():
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+        page.goto('https://example.com')
+        
+        # Take screenshot
+        page.screenshot(path='current.png')
+        
+        # Compare with baseline using perceptual hash
+        baseline = Image.open('baseline.png')
+        current = Image.open('current.png')
+        
+        baseline_hash = imagehash.phash(baseline)
+        current_hash = imagehash.phash(current)
+        
+        difference = baseline_hash - current_hash
+        assert difference < 5, f"Visual difference detected: {difference}"
+```
+
+### Module 3: Intelligent Test Data Generation (3 hours)
+
+**AI-Generated Test Data:**
+```python
+# Prompt: Generate realistic test data for e-commerce
+
+test_users = [
+    {
+        "name": "Sarah Johnson",
+        "email": "sarah.j@email.com",
+        "age": 28,
+        "location": "New York, NY",
+        "purchase_history": [
+            {"product": "Laptop", "price": 1299.99, "date": "2024-01-15"},
+            {"product": "Mouse", "price": 29.99, "date": "2024-01-15"}
+        ]
+    },
+    # ... 99 more realistic users
+]
+
+# Use in tests
+@pytest.mark.parametrize("user", test_users)
+def test_user_checkout_flow(user):
+    # Test with diverse, realistic data
+    pass
+```
+
+### Module 4: AI-Assisted Bug Analysis (2 hours)
+
+**Automated Bug Triage:**
+```python
+def analyze_bug_report(bug_description, stack_trace):
+    prompt = f'''
+    Analyze this bug report:
+    
+    Description: {bug_description}
+    Stack Trace: {stack_trace}
+    
+    Provide:
+    1. Severity (Critical/High/Medium/Low)
+    2. Likely root cause
+    3. Affected components
+    4. Suggested fix
+    5. Similar known issues
+    '''
+    
+    analysis = call_llm(prompt)
+    return analysis
+
+# Auto-categorize and prioritize bugs
+bug = {
+    "description": "App crashes when uploading large files",
+    "stack_trace": "..."
+}
+
+analysis = analyze_bug_report(bug["description"], bug["stack_trace"])
+# AI suggests: Severity: High, Cause: Memory overflow, Fix: Implement chunked upload
+```
+
+### Module 5: Performance Testing (3 hours)
+
+**AI-Optimized Load Patterns:**
+```python
+from locust import HttpUser, task, between
+import random
+
+class IntelligentUser(HttpUser):
+    wait_time = between(1, 5)
+    
+    # AI suggests realistic user behavior patterns
+    @task(5)  # 50% of traffic
+    def browse_products(self):
+        category = random.choice(['electronics', 'clothing', 'books'])
+        self.client.get(f'/products?category={category}')
+    
+    @task(3)  # 30% of traffic
+    def view_product(self):
+        product_id = random.randint(1, 1000)
+        self.client.get(f'/products/{product_id}')
+    
+    @task(2)  # 20% of traffic
+    def add_to_cart(self):
+        self.client.post('/cart', json={
+            'product_id': random.randint(1, 1000),
+            'quantity': random.randint(1, 3)
+        })
+```
+
+### Module 6: Accessibility Testing (2 hours)
+
+**AI-Powered A11y Checks:**
+```python
+from axe_selenium_python import Axe
+
+def test_accessibility():
+    driver.get('https://example.com')
+    axe = Axe(driver)
+    
+    # Run accessibility scan
+    results = axe.run()
+    
+    # AI analyzes violations and suggests fixes
+    for violation in results['violations']:
+        fix_suggestion = get_ai_fix_suggestion(violation)
+        print(f"Issue: {violation['help']}")
+        print(f"AI Suggestion: {fix_suggestion}")
+```
+
+### Module 7: Final Project (3 hours)
+
+Build a complete AI-powered testing framework:
+- Automated test generation from requirements
+- Visual regression testing
+- Performance monitoring
+- Bug prediction
+- Test maintenance automation
+                """
+            }
+        ],
+        "quiz": [
+            {
+                "question": "How can AI help with test maintenance?",
+                "options": ["Delete all tests", "Auto-update tests when UI changes", "Make tests slower", "Remove assertions"],
+                "correct": 1,
+                "explanation": "AI can analyze UI changes and automatically update test selectors and assertions, reducing the manual effort required to maintain test suites."
+            }
+        ]
+    },
+    
+    # NEW TUTORIAL CONTENT (January 2026)
+
+    "dd-11": {
         "title": "LangGraph: Multi-Agent Orchestration",
         "sections": [
             {
@@ -604,7 +2196,7 @@ workflow.add_conditional_edges(
         ]
     },
     
-    "dd-9": {
+    "dd-12": {
         "title": "CrewAI: Collaborative AI Agents",
         "sections": [
             {
@@ -647,9 +2239,9 @@ llm = ChatOpenAI(model="gpt-4")
 researcher = Agent(
     role='Research Analyst',
     goal='Find accurate, up-to-date information on given topics',
-    backstory="""You are an expert researcher with a keen eye for 
+    backstory='''You are an expert researcher with a keen eye for 
     credible sources and relevant data. You excel at finding the 
-    most important information quickly.""",
+    most important information quickly.''',
     verbose=True,
     allow_delegation=False,
     llm=llm
@@ -659,8 +2251,8 @@ researcher = Agent(
 writer = Agent(
     role='Content Writer',
     goal='Create engaging, well-structured content',
-    backstory="""You are a skilled writer who can transform research 
-    into compelling narratives. You write with clarity and style.""",
+    backstory='''You are a skilled writer who can transform research 
+    into compelling narratives. You write with clarity and style.''',
     verbose=True,
     allow_delegation=False,
     llm=llm
@@ -670,8 +2262,8 @@ writer = Agent(
 editor = Agent(
     role='Content Editor',
     goal='Refine content for clarity, grammar, and impact',
-    backstory="""You are a meticulous editor with an eye for detail. 
-    You ensure every piece of content is polished and professional.""",
+    backstory='''You are a meticulous editor with an eye for detail. 
+    You ensure every piece of content is polished and professional.''',
     verbose=True,
     allow_delegation=False,
     llm=llm
@@ -681,26 +2273,26 @@ editor = Agent(
 ### Step 2: Define Tasks
 ```python
 research_task = Task(
-    description="""Research the topic: {topic}
+    description='''Research the topic: {topic}
     Find key points, statistics, and recent developments.
-    Provide a comprehensive research summary.""",
+    Provide a comprehensive research summary.''',
     agent=researcher,
     expected_output="Detailed research summary with sources"
 )
 
 writing_task = Task(
-    description="""Using the research provided, write a 500-word blog post 
-    about {topic}. Make it engaging and informative.""",
+    description='''Using the research provided, write a 500-word blog post 
+    about {topic}. Make it engaging and informative.''',
     agent=writer,
     expected_output="Complete blog post draft"
 )
 
 editing_task = Task(
-    description="""Edit the blog post for:
+    description='''Edit the blog post for:
     - Grammar and spelling
     - Clarity and flow
     - Engagement and impact
-    Provide the final polished version.""",
+    Provide the final polished version.''',
     agent=editor,
     expected_output="Final edited blog post"
 )
@@ -728,8 +2320,8 @@ print(result)
 manager = Agent(
     role='Project Manager',
     goal='Coordinate the team and ensure quality output',
-    backstory="""You are an experienced project manager who 
-    knows how to get the best from your team.""",
+    backstory='''You are an experienced project manager who 
+    knows how to get the best from your team.''',
     llm=llm,
     allow_delegation=True
 )
@@ -898,7 +2490,7 @@ ollama show llama3.2
         ]
     },
     
-    "dd-10": {
+    "dd-13": {
         "title": "Production RAG: From Prototype to Scale",
         "sections": [
             {
@@ -1140,7 +2732,7 @@ def ab_test_rag(query, variant_a, variant_b, n_tests=100):
         ]
     },
     
-    "dd-11": {
+    "dd-14": {
         "title": "AutoGen: Multi-Agent Conversations",
         "sections": [
             {
@@ -1195,10 +2787,10 @@ llm_config = {
 assistant = autogen.AssistantAgent(
     name="Coder",
     llm_config=llm_config,
-    system_message="""You are a helpful AI assistant.
+    system_message='''You are a helpful AI assistant.
     Solve tasks using your coding and language skills.
     Suggest Python code in markdown blocks.
-    """
+    '''
 )
 
 # User proxy that executes code
@@ -1217,8 +2809,8 @@ user_proxy = autogen.UserProxyAgent(
 ```python
 user_proxy.initiate_chat(
     assistant,
-    message="""Create a function to calculate the Fibonacci 
-    sequence up to n terms. Then test it with n=10."""
+    message='''Create a function to calculate the Fibonacci 
+    sequence up to n terms. Then test it with n=10.'''
 )
 ```
 
@@ -1233,24 +2825,24 @@ user_proxy.initiate_chat(
 # Planner agent
 planner = autogen.AssistantAgent(
     name="Planner",
-    system_message="""You are a planner. Break down complex 
-    tasks into steps. Don't write code.""",
+    system_message='''You are a planner. Break down complex 
+    tasks into steps. Don't write code.''',
     llm_config=llm_config
 )
 
 # Coder agent
 coder = autogen.AssistantAgent(
     name="Coder",
-    system_message="""You are a coder. Implement the plan 
-    with Python code.""",
+    system_message='''You are a coder. Implement the plan 
+    with Python code.''',
     llm_config=llm_config
 )
 
 # Reviewer agent
 reviewer = autogen.AssistantAgent(
     name="Reviewer",
-    system_message="""You are a code reviewer. Check for bugs, 
-    suggest improvements.""",
+    system_message='''You are a code reviewer. Check for bugs, 
+    suggest improvements.''',
     llm_config=llm_config
 )
 

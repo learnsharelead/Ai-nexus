@@ -348,7 +348,7 @@ REAL_TUTORIALS_DB = [
     
     # NEW TUTORIALS (January 2026)
     {
-        "id": "dd-8",
+        "id": "dd-11",
         "title": "LangGraph: Multi-Agent Orchestration",
         "category": "Generative AI",
         "duration": "50 min",
@@ -361,7 +361,7 @@ REAL_TUTORIALS_DB = [
         "topics": ["LangGraph", "Multi-Agent", "State Management"]
     },
     {
-        "id": "dd-9",
+        "id": "dd-12",
         "title": "CrewAI: Collaborative AI Agents",
         "category": "Generative AI",
         "duration": "45 min",
@@ -387,7 +387,7 @@ REAL_TUTORIALS_DB = [
         "topics": ["Ollama", "Local AI", "Setup"]
     },
     {
-        "id": "dd-10",
+        "id": "dd-13",
         "title": "Production RAG: From Prototype to Scale",
         "category": "Generative AI",
         "duration": "55 min",
@@ -400,7 +400,7 @@ REAL_TUTORIALS_DB = [
         "topics": ["RAG", "Production", "Vector DB", "Evaluation"]
     },
     {
-        "id": "dd-11",
+        "id": "dd-14",
         "title": "AutoGen: Multi-Agent Conversations",
         "category": "Generative AI",
         "duration": "40 min",
